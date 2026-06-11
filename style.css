@@ -1,0 +1,347 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM & VARIÁVEIS (:root)
+   ========================================================================== */
+:root {
+    /* Cores */
+    --primary: #ff310f;
+    --primary-hover: #4f46e5;
+    --bg-main: #41ff0f;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border-color: #cbd5e1;
+    
+    /* Acessibilidade */
+    --focus-outline: 3px solid #f59e0b;
+    
+    /* Layout & Componentes */
+    --radius: 8px;
+    --transition-smooth: all 0.3s ease;
+    --gap-sm: 1rem;
+    --gap-md: 2rem;
+}
+
+/* ==========================================================================
+   2. MODO ALTO CONTRASTE (WCAG Compliant)
+   ========================================================================== */
+body.high-contrast {
+    --primary: #ffff00;
+    --primary-hover: #ffffcc;
+    --bg-main: #000000;
+    --bg-card: #121212;
+    --text-main: #ffffff;
+    --text-muted: #e0e0e0;
+    --border-color: #ffffff;
+    --focus-outline: 3px dashed #ffff00;
+}
+
+/* ==========================================================================
+   3. RESETS & ACESSIBILIDADE BÁSICA
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base para o controle de fonte */
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Foco Acessível Universal */
+*:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: 4px;
+}
+
+/* Link de salto de conteúdo */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary);
+    color: #fff;
+    padding: 1rem;
+    z-index: 9999;
+    transition: top 0.2s;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* ==========================================================================
+   4. LAYOUT / ESTRUTURA GERAL (Mobile-First)
+   ========================================================================== */
+.main-header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.accessibility-bar {
+    background-color: var(--text-main);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.accessibility-bar button {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--bg-main);
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.header-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.logo span { color: var(--primary); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--gap-sm);
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.section-padding {
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: var(--gap-md);
+}
+
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
+.hero-section {
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-main) 100%);
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    color: var(--text-muted);
+    margin-bottom: var(--gap-md);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+body.high-contrast .btn-primary {
+    color: #000;
+}
+
+/* ==========================================================================
+   6. COMPONENTE: CARROSSEL (Destaques)
+   ========================================================================== */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    list-style: none;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Altere o flex-basis aqui para mudar quantos itens aparecem no grid/flex do slider */
+.carousel-item {
+    flex: 0 0 100%; /* Mobile: 1 item por view */
+    padding: 1rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2rem;
+    height: 100%;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.carousel-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    width: 44px; /* Tamanho mínimo de toque recomendado em WCAG */
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   7. COMPONENTE: ACORDEÃO (Expandables)
+   ========================================================================== */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.accordion-header {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-icon {
+    transition: transform 0.3s;
+}
+
+.accordion-header[aria-expanded="true"] .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-panel {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.accordion-panel[aria-hidden="false"] {
+    padding: 1rem;
+}
+
+/* ==========================================================================
+   8. ANIMAÇÕES DE ENTRADA (Scroll Reveal)
+   ========================================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   9. FOOTER
+   ========================================================================== */
+.main-footer {
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+/* ==========================================================================
+   10. MEDIA QUERIES (Responsividade Desktop)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+    }
+
+    .hero-section {
+        padding: 6rem 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    /* Modificação do Grid/Flex do Carrossel para telas maiores */
+    .carousel-item {
+        flex: 0 0 33.333%; /* Exibe 3 itens por linha em telas desktop */
+    }
+    
+    .carousel-controls {
+        display: none; /* Esconde os controles se couberem todos na tela (opcional) */
+    }
+}
+
